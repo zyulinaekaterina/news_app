@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список новостей</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Список новостей</h1>
+    <a href="{{ url_for('index') }}">На главную</a>
+
+    <div class="news-container">
+        {% for article in news %}
+            <div class="news-item">
+                <h2>{{ article['title'] }}</h2>
+                <p>{{ article['content'] }}</p>
+            </div>
+        {% else %}
+            <p>Новостей пока нет.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

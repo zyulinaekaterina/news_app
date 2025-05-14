@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список пользователей</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Список зарегистрированных пользователей</h1>
+    <a href="{{ url_for('index') }}">На главную</a>
+
+    <div class="users-container">
+        {% for user in users %}
+            <div class="user-item">
+                <p><strong>Имя пользователя:</strong> {{ user['username'] }}</p>
+            </div>
+        {% else %}
+            <p>Пользователей пока нет.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

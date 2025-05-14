@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Блок новостей</h1>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="{{ url_for('register') }}" class="button">Зарегистрироваться</a>
+            <a href="{{ url_for('add_news') }}" class="button">Добавить новость</a>
+            <a href="{{ url_for('fetch_news') }}" class="button">Загрузить новости из NewsAPI</a>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <div class="news-container">
+            {% for article in news %}
+                <div class="news-item">
+                    <h2>{{ article['title'] }}</h2>
+                    <p>{{ article['content'] }}</p>
+                </div>
+            {% else %}
+                <p style="text-align: center;">Новостей пока нет.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
